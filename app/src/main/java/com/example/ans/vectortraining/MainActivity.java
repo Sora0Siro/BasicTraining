@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String surname = editText1Surname.getText().toString();
         String email = editText2Email.getText().toString();
 
-        sendStringToActivity(name,surname,email,intent);
+        intent.putExtra("name",name);
+        intent.putExtra("surname",surname);
+        intent.putExtra("email",email);
 
         startActivity(intent);
     }
@@ -77,13 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 clearTextFields();
                 break;
         }
-    }
-
-    private void sendStringToActivity(String name,String surname,String email,Intent intent)
-    {
-        intent.putExtra("name",name);
-        intent.putExtra("surname",surname);
-        intent.putExtra("email",email);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
