@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">VectorTraining</string>
+    <string name="Main">Main</string>
+    <string name="Profile">Profile</string>
+    <string name="Options">Options</string>
+    <string name="Info">Info</string>
+    <string name="BIGSH">Затем перейдем к классу MainActivity, который находится в проекте в папке app/src/main/java/[название_пакета], и изменим этот класс следующим образом:Здесь как раз и добавлен метод sendMessage(), который будет вызываться по нажатию на кнопку. Обработчик нажатия кнопки должен принимать в качестве параметра объект View, который представляет саму нажатую кнопку:</string>
+    <string name="RadioGr1">RadioGroup</string>
+    <string name="radButtName">Name</string>
+    <string name="radButtSur">Surname</string>
+    <string name="radButtEmail">Email</string>
+    <string name="nully">nully</string>
+    <string name="resultText">Text</string>
+</resources>
+
