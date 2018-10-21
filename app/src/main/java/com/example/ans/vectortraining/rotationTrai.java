@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -19,6 +20,8 @@ public class rotationTrai extends AppCompatActivity
     final int MENU_ROTATE_ID = 4;
     final int MENU_COMBO_ID = 5;
 
+    public final int MENU_QUIT_ID = 10;
+
     TextView tv;
 
     @Override
@@ -27,7 +30,7 @@ public class rotationTrai extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_test);
 
-        tv = (TextView) findViewById(R.id.tv);
+        tv = findViewById(R.id.tv);
         // регистрируем контекстное меню для компонента tv
         registerForContextMenu(tv);
     }
@@ -73,5 +76,25 @@ public class rotationTrai extends AppCompatActivity
         }
         tv.startAnimation(anim);
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        menu.add(0,MENU_QUIT_ID,0,"Return");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case MENU_QUIT_ID:
+                //ыход из приложения
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
