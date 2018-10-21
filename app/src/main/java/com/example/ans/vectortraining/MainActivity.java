@@ -10,60 +10,71 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Vector;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
+{
     EditText editTextName;
     EditText editText1Surname;
     EditText editText2Email;
     Button button;
     Button buttonClear;
 
-    final int MENU_ITEM_MAIN = 1;
-    final int MENU_ITEM_RPOFILE = 2;
-    final int MENU_ITEM_OPTIONS = 3;
-    final int MENU_ITEM_INFO = 4;
+    final int MENU_ITEM_CALC = 1;
+    final int MENU_ITEM_CONTMENU = 2;
+    final int MENU_ITEM_IMAGE = 3;
+    final int MENU_ITEM_LL = 4;
     final int MENU_ITEM_SPLSH = 5;
 
+    public final int MENU_QUIT_ID = 10;
+
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private Vector<String> vectorTrain = new Vector<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextName = (EditText)findViewById(R.id.editText);
-        editText1Surname = (EditText)findViewById(R.id.editText2);
-        editText2Email = (EditText) findViewById(R.id.editText3);
+        editTextName = findViewById(R.id.editText);
+        editText1Surname = findViewById(R.id.editText2);
+        editText2Email = findViewById(R.id.editText3);
 
-        button = (Button)findViewById(R.id.button);
-        buttonClear = (Button)findViewById(R.id.btt_Clear);
+        button = findViewById(R.id.Send);
+        buttonClear = findViewById(R.id.btt_Clear);
 
         button.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
+    }
+
+    public void setExtras()
+    {
+        Intent intent = new Intent(this,ContextMenuTrain.class);
+        String name = editTextName.getText().toString();
+        String surname = editText1Surname.getText().toString();
+        String email = editText2Email.getText().toString();
+
+        sendStringToActivity(name,surname,email,intent);
+
+        startActivity(intent);
+    }
+
+    public void clearTextFields()
+    {
+        Toast.makeText(this,"You have click the Clear button",Toast.LENGTH_SHORT).show();
+        editTextName.setText("");
+        editText1Surname.setText("");
+        editText2Email.setText("");
     }
 
     public void onClick(View view)
     {
         switch (view.getId())
         {
-            case R.id.button:
+            case R.id.Send:
                 //Toast.makeText(this,"You have click the Button",Toast.LENGTH_SHORT).show(); - тост фуу >.<
-                Intent intent = new Intent(this,ContextMenuTrain.class);
-                String name = editTextName.getText().toString();
-                String surname = editText1Surname.getText().toString();
-                String email = editText2Email.getText().toString();
-
-                sendStringToActivity(name,surname,email,intent);
-
-                startActivity(intent);
+                setExtras();
                 break;
             case R.id.btt_Clear:
-                Toast.makeText(this,"You have click the Clear button",Toast.LENGTH_SHORT).show();
-                editTextName.setText("");
-                editText1Surname.setText("");
-                editText2Email.setText("");
+                clearTextFields();
                 break;
         }
     }
@@ -77,35 +88,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        menu.add("Main");
-        menu.add(0,MENU_ITEM_MAIN,0,"Main");
-        menu.add(0,MENU_ITEM_RPOFILE,0,"Profile");
-        menu.add(0,MENU_ITEM_OPTIONS,0,"Options");
-        menu.add(0,MENU_ITEM_INFO,0,"Info");
-        menu.add(0,MENU_ITEM_SPLSH,0,"splash Test Activity");
+        menu.add(0,MENU_ITEM_CALC,0,"Calculator");
+        menu.add(0,MENU_ITEM_CONTMENU,0,"Context Menu");
+        menu.add(0,MENU_ITEM_IMAGE,0,"Image View");
+        menu.add(0,MENU_ITEM_LL,0,"Layout|:Linear");
+        menu.add(0,MENU_ITEM_SPLSH,0,"Animations");
+
+        menu.add(0,MENU_QUIT_ID,0,"Quit");
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        Intent intent;
         switch (item.getItemId())
         {
-            /*case MENU_ITEM_MAIN:
-                // do whatever
-                break;
-            case MENU_ITEM_RPOFILE:
-                // do whatever
-                break;
-            case MENU_ITEM_OPTIONS:
-                // do whatever
-                break;
-            case MENU_ITEM_INFO:
-                // do whatever
-                break;*/
-            case MENU_ITEM_SPLSH:
-                Intent intent = new Intent(this,rotationTrai.class);
+            case MENU_ITEM_CALC:
+                intent = new Intent(MainActivity.this,Calculator.class);
                 startActivity(intent);
+                break;
+            case MENU_ITEM_CONTMENU:
+                intent = new Intent(MainActivity.this,ContextMenuTrain.class);
+                startActivity(intent);
+                break;
+            case MENU_ITEM_IMAGE:
+                intent = new Intent(MainActivity.this,FullImageView.class);
+                startActivity(intent);
+                break;
+            case MENU_ITEM_LL:
+                intent = new Intent(MainActivity.this,llTrain.class);
+                startActivity(intent);
+                break;
+            case MENU_ITEM_SPLSH:
+                intent = new Intent(MainActivity.this,rotationTrai.class);
+                startActivity(intent);
+                break;
+            case MENU_QUIT_ID:
+                finish();
                 break;
             default:
                 break;

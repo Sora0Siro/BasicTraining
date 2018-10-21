@@ -88,7 +88,7 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
     public boolean onCreateOptionsMenu(Menu menu)
     {
         menu.add(0,MENU_RESET_ID,0,"Reset");
-        menu.add(0,MENU_QUIT_ID,0,"Quit");
+        menu.add(0,MENU_QUIT_ID,0,"Return");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -101,6 +101,7 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
                 etNum1.setText("");
                 etNum2.setText("");
                 tvResult.setText("");
+                break;
             case MENU_QUIT_ID:
                 //ыход из приложения
                 finish();

@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LinearLayout" />
+        <activity android:name=".llTrain" />
         <activity android:name=".FullImageView" />
         <activity android:name=".ContextMenuTrain" />
         <activity android:name=".CreateViewComponent" />
