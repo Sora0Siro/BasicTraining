@@ -3,6 +3,8 @@ package com.example.ans.vectortraining;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,11 @@ import android.widget.TextView;
 
 public class Calculator extends AppCompatActivity implements View.OnClickListener
 {
+    private final static String TAG = "MainActivity";
+    //из int 100 в dip
+    int textViewHeight = 100;
+    int testV = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,textViewHeight,getResources().getDisplayMetrics());
+
     final int MENU_RESET_ID = 1;
     final int MENU_QUIT_ID = 2;
 
@@ -32,20 +39,23 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        etNum1 = (EditText) findViewById(R.id.etNum1);
-        etNum2 = (EditText) findViewById(R.id.etNum2);
+        etNum1 = findViewById(R.id.etNum1);
+        etNum2 = findViewById(R.id.etNum2);
 
-        btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnSub = (Button) findViewById(R.id.btnSub);
-        btnMult = (Button) findViewById(R.id.btnMult);
-        btnDiv = (Button) findViewById(R.id.btnDiv);
+        btnAdd = findViewById(R.id.btnAdd);
+        btnSub = findViewById(R.id.btnSub);
+        btnMult = findViewById(R.id.btnMult);
+        btnDiv = findViewById(R.id.btnDiv);
 
-        tvResult = (TextView) findViewById(R.id.tvResult);
+        tvResult = findViewById(R.id.tvResult);
 
         btnAdd.setOnClickListener(this);
         btnSub.setOnClickListener(this);
         btnMult.setOnClickListener(this);
         btnDiv.setOnClickListener(this);
+
+        Log.d(TAG, "onCreate");
+
     }
 
     @Override
@@ -82,6 +92,8 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
                     break;
         }
         tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
+
+        Log.d(TAG,"onClick");
     }
 
     @Override
@@ -89,6 +101,9 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
     {
         menu.add(0,MENU_RESET_ID,0,"Reset");
         menu.add(0,MENU_QUIT_ID,0,"Return");
+
+        Log.d(TAG,"onCreateOptionsMenu");
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -107,6 +122,9 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
         }
+
+        Log.d(TAG,"onOptionsItemSelected");
+
         return super.onOptionsItemSelected(item);
     }
 }

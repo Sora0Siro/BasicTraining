@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="5pt"
         android:layout_marginRight="5pt"
-        android:textSize="12pt"
+        android:textSize="@dimen/big_text_size"
         android:layout_marginTop="3pt"
         android:id="@+id/tvResult"
         android:gravity="center_horizontal">

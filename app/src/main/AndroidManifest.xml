@@ -2,6 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ans.vectortraining">
 
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:maxSdkVersion="25" />
+    /*Screen sizes
+    large 4.5-10"
+    normal 3-4.5"
+    small - less than 3"
+    xlarge>10"
+    */
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false"
+        android:xlargeScreens="true" />
+    //Main activity только в верт. ориентации
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +24,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +36,9 @@
         <activity android:name=".llTrain" />
         <activity android:name=".FullImageView" />
         <activity android:name=".ContextMenuTrain" />
-        <activity android:name=".CreateViewComponent" />
         <activity android:name=".Calculator" />
-        <activity android:name=".rotationTrai"></activity>
+        <activity android:name=".rotationTrai" />
+        <activity android:name=".RecieveValues"></activity>
     </application>
 
 </manifest>

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final int MENU_ITEM_IMAGE = 3;
     final int MENU_ITEM_LL = 4;
     final int MENU_ITEM_SPLSH = 5;
+    final int MENU_ITEM_RCV = 6;
 
     public final int MENU_QUIT_ID = 10;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonClear.setOnClickListener(this);
     }
 
-    public void setExtras()
+    public void setExtrasMenu()
     {
         Intent intent = new Intent(this,ContextMenuTrain.class);
         String name = editTextName.getText().toString();
@@ -57,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("email",email);
 
         startActivity(intent);
+    }
+
+    public void setExtras(Intent intent)
+    {
+        Product product = new Product();
+        intent.putExtra(Product.class.getSimpleName(),RecieveValues.class);
     }
 
     public void clearTextFields()
@@ -73,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.Send:
                 //Toast.makeText(this,"You have click the Button",Toast.LENGTH_SHORT).show(); - тост фуу >.<
-                setExtras();
+                setExtrasMenu();
                 break;
             case R.id.btt_Clear:
                 clearTextFields();
@@ -88,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menu.add(0,MENU_ITEM_IMAGE,0,"Image View");
         menu.add(0,MENU_ITEM_LL,0,"Layout|:Linear");
         menu.add(0,MENU_ITEM_SPLSH,0,"Animations");
+        menu.add(0,MENU_ITEM_RCV,0,"Receive values");
 
         menu.add(0,MENU_QUIT_ID,0,"Quit");
 
@@ -118,6 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case MENU_ITEM_SPLSH:
                 intent = new Intent(MainActivity.this,rotationTrai.class);
+                startActivity(intent);
+                break;
+            case MENU_ITEM_RCV:
+                intent = new Intent(MainActivity.this,RecieveValues.class);
+                setExtras(intent);
                 startActivity(intent);
                 break;
             case MENU_QUIT_ID:
